@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include("partials/head.ejs", { pageScripts: [] }) %>
+        <title>Your Playlists</title>
+</head>
+
+<body>
+    <h1 id="title">VYNL</h1>
+    <%- include("partials/testnav.ejs") %>
+    <main class="page-content">
+        <h1 id="playlistcss">Your Playlists</h1>
+        <div class="profilePageInfo">
+            <section class="profilePagePart card-panel">
+                <h3 id="playlistcss2">Create New Playlist</h3>
+                <form action="/create-playlist" method="POST">
+                    <div class="searchDivItem"><input type="text" name="name" placeholder="Playlist Name" required></div><br>
+                    <div class="searchDivItem"><button class="searchButton" type="submit">Create</button></div>
+                </form>
+            </section>
+        </div>
+
+        <div class="profilePageInfo">
+            <section class="profilePagePart card-panel">
+                <% if (playlists.length===0) { %>
+                    <p>No playlists yet.</p>
+                <% } else { %>
+                    <ul class="plain-list">
+                        <% for(let playlist of playlists) { %>
+                            <li class="searchDivItem">
+                                <strong><a class="homeButtons inline-link" href="/playlist/<%= playlist.playlistId %>">
+                                        <%= playlist.playlistName %>
+                                </a></strong>
+                            </li>
+                        <% } %>
+                    </ul>
+                <% } %>
+            </section>
+        </div>
+    </main>
+    <%- include("partials/footer") %>
+</body>
+
+</html>

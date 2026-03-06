@@ -1,0 +1,446 @@
+:root {
+    --bg: #0f1012;
+    --bg-soft: #181b20;
+    --panel: #1e2229;
+    --panel-border: rgba(255, 255, 255, 0.12);
+    --text: #eef1f6;
+    --muted: #b7bec9;
+    --accent: #e74856;
+    --accent-strong: #d22d3b;
+    --success: #65d58a;
+    --danger: #ff7e86;
+    --shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    color: var(--text);
+    font-family: "Inter", "Segoe UI", Tahoma, sans-serif;
+    background: radial-gradient(circle at top, #282f3a 0%, #14171d 50%, #0d0f12 100%);
+}
+
+body:not(.loginBody) {
+    display: flex;
+    flex-direction: column;
+}
+
+#title {
+    margin: 0;
+    padding: 1.2rem 1rem 1rem;
+    text-align: center;
+    font-size: clamp(2.2rem, 7vw, 4.2rem);
+    letter-spacing: 0.1em;
+    font-weight: 800;
+    color: #f7f9ff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+    text-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+#navPartial {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 0.8rem 0 1rem;
+}
+
+.navItem {
+    border-radius: 999px;
+    margin: 0 0.35rem;
+    padding: 0.55rem 1rem;
+    border: 1px solid var(--panel-border);
+    color: #f2f5fc;
+    background: linear-gradient(145deg, #272b33, #1d2026);
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.navButton:hover .navItem {
+    transform: translateY(-1px);
+    border-color: rgba(231, 72, 86, 0.75);
+    background: linear-gradient(145deg, #2f333d, #242933);
+    color: #fff;
+}
+
+.page-content {
+    width: min(1080px, 92vw);
+    margin: 1.5rem auto 4.5rem;
+}
+
+.card-panel,
+.profilePagePart,
+#searchDiv,
+.result-card,
+.modal-content,
+.login-box {
+    background: linear-gradient(160deg, rgba(34, 39, 48, 0.96), rgba(26, 30, 37, 0.94));
+    border: 1px solid var(--panel-border);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+}
+
+.home-actions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+}
+
+.hero-panel {
+    padding: 1.3rem;
+    margin-bottom: 1rem;
+}
+
+.hero-subtitle,
+.section-subtitle,
+.auth-subtitle {
+    margin: 0.35rem 0 0;
+    color: var(--muted);
+}
+
+#userBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+#userBox img {
+    width: 76px;
+    height: 76px;
+    border-radius: 999px;
+    object-fit: cover;
+    border: 1px solid var(--panel-border);
+}
+
+#welcomeUser {
+    margin: 0;
+    font-size: clamp(1.35rem, 4vw, 2rem);
+    font-weight: 700;
+}
+
+.homeDiv {
+    padding: 1.25rem;
+    text-align: center;
+}
+
+.homeDiv p {
+    margin: 0 0 0.8rem;
+    font-size: 1.05rem;
+}
+
+.homeButtons {
+    color: #f3f5fc;
+    text-decoration: none;
+}
+
+.inline-link {
+    color: #ffc2c7;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.homeBtn,
+.result-btn,
+.searchButton,
+.profileBtns,
+.btn-custom {
+    display: inline-block;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 10px;
+    padding: 0.6rem 0.95rem;
+    background: linear-gradient(145deg, var(--accent), var(--accent-strong));
+    color: white;
+    font-weight: 600;
+    text-align: center;
+    transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.homeBtn:hover,
+.result-btn:hover,
+.searchButton:hover,
+.profileBtns:hover,
+.btn-custom:hover {
+    color: white;
+    transform: translateY(-1px);
+    filter: brightness(1.07);
+}
+
+#searchBody {
+    display: flex;
+    justify-content: center;
+}
+
+#searchDiv {
+    width: min(540px, 100%);
+    padding: 1.5rem;
+}
+
+.searchDivItem {
+    width: 100%;
+    margin-top: 0.65rem;
+}
+
+.searchDivItem input,
+.loginDiv input,
+.playlist-select,
+.profileModalEntry input {
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 10px;
+    padding: 0.62rem 0.72rem;
+    background: var(--bg-soft);
+    color: var(--text);
+    outline: none;
+}
+
+.searchDivItem input:focus,
+.loginDiv input:focus,
+.profileModalEntry input:focus {
+    border-color: rgba(231, 72, 86, 0.8);
+}
+
+.resultsTop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.results-container {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+}
+
+.result-card {
+    padding: 0.85rem;
+}
+
+.result-card img {
+    width: 100%;
+    border-radius: 10px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+.profilePageInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+.profilePagePart {
+    width: min(680px, 100%);
+    padding: 1.2rem;
+    text-align: center;
+}
+
+#playlistcss {
+    text-align: center;
+    font-size: clamp(1.6rem, 4vw, 2.3rem);
+    margin: 0.2rem 0 1rem;
+}
+
+#playlistcss2 {
+    margin-top: 0.3rem;
+    margin-bottom: 0.6rem;
+}
+
+.plain-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.plain-list li {
+    padding: 0.35rem 0;
+}
+
+.playlist-song-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.45rem 0;
+}
+
+.playlist-song-cover {
+    width: 56px;
+    height: 56px;
+    border-radius: 8px;
+    object-fit: cover;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    flex-shrink: 0;
+}
+
+.playlist-song-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    gap: 0.1rem;
+}
+
+.playlist-song-meta span {
+    color: var(--muted);
+    font-size: 0.92rem;
+}
+
+.link-row {
+    margin-top: 0.8rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.55rem;
+}
+
+#profileModal {
+    width: min(560px, 90vw);
+    border: 1px solid var(--panel-border);
+    border-radius: 16px;
+    background: var(--panel);
+    color: var(--text);
+    box-shadow: var(--shadow);
+    padding: 1.1rem;
+}
+
+#profileModal::backdrop {
+    background: rgba(0, 0, 0, 0.68);
+}
+
+.profileModalBody {
+    display: grid;
+    gap: 0.65rem;
+}
+
+.profileModalEntry {
+    display: grid;
+    gap: 0.35rem;
+    text-align: left;
+    font-weight: 600;
+}
+
+.loginBody {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: radial-gradient(circle at top, #20242c 0%, #121419 55%, #0b0d10 100%);
+}
+
+.login-box {
+    width: min(420px, 92vw);
+    padding: 1.6rem;
+    color: var(--text);
+}
+
+.loginText {
+    margin-bottom: 0.2rem;
+    color: #ff9ea6;
+    font-weight: 700;
+}
+
+.loginDiv {
+    position: relative;
+}
+
+.loginIcon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--muted);
+    cursor: pointer;
+}
+
+.btn-outline-custom {
+    width: 100%;
+    border-radius: 10px;
+    padding: 0.6rem;
+}
+
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.86);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    position: relative;
+    width: min(360px, 92vw);
+    color: var(--text);
+    padding: 1rem;
+}
+
+.close-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.8rem;
+    font-size: 1.35rem;
+    cursor: pointer;
+}
+
+.video-modal-content {
+    position: relative;
+    width: min(920px, 92vw);
+    aspect-ratio: 16 / 9;
+}
+
+.video-close-btn {
+    position: absolute;
+    top: -2.2rem;
+    right: 0;
+    border: none;
+    background: none;
+    color: #fff;
+    font-size: 1.9rem;
+    cursor: pointer;
+}
+
+.playlist-message {
+    min-height: 20px;
+    margin: 0.3rem 0 0.7rem;
+}
+
+.playlist-select {
+    margin-bottom: 0.75rem;
+}
+
+.mt-10 {
+    margin-top: 10px;
+}
+
+.mt-5 {
+    margin-top: 5px;
+}
+
+.form-error,
+.form-success,
+.form-feedback {
+    font-weight: 600;
+    margin: 0.45rem 0 0.8rem;
+}
+
+.form-error {
+    color: var(--danger);
+}
+
+.form-success {
+    color: var(--success);
+}
+
+#footer {
+    text-align: center;
+    color: var(--muted);
+    padding: 0.9rem 0 1.3rem;
+    font-size: 0.9rem;
+    margin-top: auto;
+}

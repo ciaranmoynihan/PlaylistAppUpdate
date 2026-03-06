@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("partials/head.ejs", { pageScripts: [] }) %>
+    <title>Home</title>
+</head>
+<body>
+    <h1 id="title">VYNL</h1>
+    <%- include("partials/testnav.ejs") %>
+    <main class="page-content page-home">
+        <section class="card-panel hero-panel">
+            <div id="userBox">
+                <img src="https://media.tenor.com/43WINHsZ4jQAAAAi/ayo-menyanyi.gif" alt="Animated music icon">
+                <p id="welcomeUser">Welcome <%= name %>!</p>
+                <img src="https://media.tenor.com/43WINHsZ4jQAAAAi/ayo-menyanyi.gif" alt="Animated music icon">
+            </div>
+            <p class="hero-subtitle">Discover tracks, manage playlists, and keep your favorites in one place.</p>
+        </section>
+
+        <section class="home-actions">
+            <article class="card-panel homeDiv">
+                <p>Search for a Song</p>
+                <a class="homeBtn homeButtons" id="homeSearchBtn" href="/search">Start Search</a>
+            </article>
+
+            <article class="card-panel homeDiv">
+                <p>Visit Your Playlists</p>
+                <a class="homeBtn homeButtons" id="homePlaylistsBtn" href="/playlists">Open Playlists</a>
+            </article>
+
+            <article class="card-panel homeDiv">
+                <p>Switch Accounts</p>
+                <a class="homeBtn homeButtons" id="homeLogoutBtn" href="/logout">Log Out</a>
+            </article>
+        </section>
+    </main>
+    <%- include("partials/footer") %>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include("partials/head.ejs", { pageScripts: ["script.js"] }) %>
+        <title>Search Results</title>
+</head>
+
+<body>
+    <h1 id="title">VYNL</h1>
+    <%- include("partials/testnav.ejs") %>
+    <main class="page-content">
+        <div class="resultsTop">
+            <h1>Search Results</h1>
+            <a class="homeButtons inline-link" href="/search">Back to Search</a>
+        </div>
+        <div class="results-container">
+            <% if (resultsError) { %>
+                <p class="form-error"><%= resultsError %></p>
+            <% } %>
+            <% if (!data || data.length === 0) { %>
+                <p>No results found. Try a different song or artist.</p>
+            <% } %>
+            <% data.forEach(item=> { %>
+            <div class="result-card">
+                <img src="<%= item.thumb || 'https://via.placeholder.com/300x300?text=No+Image' %>" alt="<%= item.title %>">
+                <h3>
+                    <%= item.title %>
+                </h3>
+                <p>Year: <%= item.year || 'Unknown' %>
+                </p>
+
+                <button class="result-btn" onclick="playSong('<%= item.title %>')">Play on YouTube</button>
+
+                <% let parts=item.title.split(' - ');
+                let artist = parts.length > 1 ? parts[0] : 'Unknown';
+                let song=parts.length> 1 ? parts.slice(1).join(' - ') : item.title;
+                %>
+
+                <button class="result-btn mt-10" onclick="addToFavorites('<%= song %>', '<%= artist %>', this)">
+                    Add Favorite ❤️
+                </button>
+
+                <button class="result-btn mt-5" onclick="openPlaylistModal('<%= song %>', '<%= artist %>')">
+                    Add to Playlist
+                </button>
+            </div>
+            <% }); %>
+        </div>
+
+        <div id="playlistModal" class="modal-overlay">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeModal('playlistModal')">&times;</span>
+                <h2>Select Playlist</h2>
+                <p id="playlistMessage" class="playlist-message"></p>
+                <select id="playlistSelect" class="playlist-select"></select>
+                <button class="result-btn" onclick="addToPlaylist()">Add</button>
+            </div>
+        </div>
+
+        <div id="videoModal" class="modal-overlay">
+            <div class="video-modal-content">
+                <button class="video-close-btn" onclick="closeModal('videoModal')">&times;</button>
+                <iframe id="youtubePlayer" style="width:100%; height:100%;" src="" frameborder="0"
+                    allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

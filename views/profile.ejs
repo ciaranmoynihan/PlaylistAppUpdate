@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include("partials/head.ejs", { pageScripts: ["profile.js"] }) %>
+        <title>Profile</title>
+</head>
+
+<body>
+    <h1 id="title">VYNL</h1>
+    <%- include("partials/testnav.ejs") %>
+    <main class="page-content">
+        <div class="profilePageInfo">
+            <section class="profilePagePart card-panel">
+                <h2>Welcome, <%= userInfo.username %>
+                </h2>
+                <h3>Here you can update your information for your account</h3>
+            </section>
+            <section class="profilePagePart card-panel">
+                <h4>First Name: <%= userInfo.firstName || "Not set" %>
+                </h4>
+                <h4>Last Name: <%= userInfo.lastName || "Not set" %>
+                </h4>
+                <h4>Email: <%= userInfo.email || "Not set" %>
+                </h4>
+            </section>
+            <% if (profileError) { %>
+                <p class="form-error"><%= profileError %></p>
+            <% } %>
+            <% if (profileSuccess) { %>
+                <p class="form-success"><%= profileSuccess %></p>
+            <% } %>
+            <button class="profileBtns" id="openProfileModal">Update Profile</button>
+        </div>
+
+        <div class="profilePageInfo">
+            <section class="profilePagePart card-panel">
+                <h3>Your Favorite Songs</h3>
+                <% if (favorites && favorites.length> 0) { %>
+                    <ul class="plain-list">
+                        <% for(let song of favorites) { %>
+                            <li>
+                                <%= song.songName %> by <%= song.artistName %>
+                            </li>
+                            <% } %>
+                    </ul>
+                    <% } else { %>
+                        <p>No favorite songs yet.</p>
+                        <% } %>
+            </section>
+        </div>
+
+        <dialog id="profileModal">
+            <h1 id="profileModalTitle">Update Profile Info</h1>
+            <form action="/updateProfile" method="POST">
+                <div class="profileModalBody">
+                    <label class="profileModalEntry">First Name:
+                        <input type="text" name="firstName" value="<%= userInfo.firstName || '' %>">
+                    </label>
+                    <label class="profileModalEntry">Last Name:
+                        <input type="text" name="lastName" value="<%= userInfo.lastName || '' %>">
+                    </label>
+                    <label class="profileModalEntry">Email:
+                        <input type="email" name="email" required value="<%= userInfo.email || '' %>">
+                    </label>
+                    <label class="profileModalEntry">New Password:
+                        <input type="password" name="password" placeholder="Leave blank to keep current password">
+                    </label>
+                    <button class="profileBtns" type="submit">Update</button>
+                    <button class="profileBtns" type="button" id="closeProfileModal">Close</button>
+                </div>
+            </form>
+        </dialog>
+    </main>
+</body>
+
+</html>

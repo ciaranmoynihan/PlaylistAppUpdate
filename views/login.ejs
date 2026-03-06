@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("partials/head.ejs", { pageScripts: ["script.js"] }) %>
+    <title>Login</title>
+</head>
+<body class="text-center loginBody">
+    <div class="login-box">
+        <form method="POST" action="/login">
+            <h1 class="m-3 loginText">Log in to Vynl</h1>
+            <p class="auth-subtitle">Welcome back - pick up where you left off.</p>
+            <% if (typeof loginError !== "undefined" && loginError) { %>
+                <p class="form-error"><%= loginError %></p>
+            <% } %>
+            <h3 class="loginText">Username:</h3>
+            <div class="loginDiv mb-4">
+                <input type="text" name="username" required>
+                <span class="bi bi-person loginIcon"></span>
+            </div>
+            <h3 class="loginText">Password:</h3>
+            <div class="loginDiv mb-4">
+                <input type="password" id="pwd" name="password" required>
+                <span class="bi bi-eye loginIcon" id="eyeIcon"></span>
+            </div>
+            <button type="submit" class="btn btn-custom mb-3">Log in</button>
+        </form>
+        <form method="GET" action="/register">
+            <button type="submit" class="btn btn-outline-primary btn-outline-custom">Sign up</button>
+        </form>
+    </div>
+</body>
+</html>

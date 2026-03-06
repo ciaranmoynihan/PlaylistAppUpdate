@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include("partials/head.ejs", { pageScripts: [] }) %>
+        <title>Search</title>
+</head>
+
+<body>
+    <h1 id="title">VYNL</h1>
+    <%- include("partials/testnav.ejs") %>
+
+    <main class="page-content">
+        <div id="searchBody">
+            <section id="searchDiv">
+                <h2 class="searchDivItem">Search for a release</h2>
+                <p class="section-subtitle">Enter a track, artist, or both.</p>
+
+                <form action="/search-test" method="get">
+                    <div class="searchDivItem">
+                        <input class="searchInput" type="text" name="songName" placeholder="Song name">
+                    </div>
+                    <div class="searchDivItem">
+                        <input class="searchInput" type="text" name="artistName" placeholder="Artist name">
+                    </div>
+                    <div class="searchDivItem">
+                        <button class="searchButton" type="submit">Search</button>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </main>
+    <%- include("partials/footer") %>
+</body>
+
+</html>

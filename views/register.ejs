@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("partials/head.ejs", { pageScripts: ["script.js", "register.js"] }) %>
+    <title>Register</title>
+</head>
+<body class="text-center loginBody">
+    <div class="login-box">
+        <form method="POST" action="/register">
+            <h1 id="registerWarning" class="form-feedback"></h1>
+            <h1 class="m-3 loginText">Create your Vynl account</h1>
+            <p class="auth-subtitle">Save favorites and playlists in your profile.</p>
+            <% if (registerError) { %>
+                <p class="form-error"><%= registerError %></p>
+            <% } %>
+            <% if (registerSuccess) { %>
+                <p class="form-success"><%= registerSuccess %></p>
+            <% } %>
+            <h3 class="loginText">Username:</h3>
+            <div class="loginDiv mb-4">
+                <input id="registerUsername" type="text" name="username" required>
+                <span class="bi bi-person loginIcon"></span>
+            </div>
+            <h3 class="loginText">Password:</h3>
+            <div class="loginDiv mb-4">
+                <input id="registerPassword" type="password" name="password" required>
+                <span class="bi bi-eye loginIcon iconEye" data-target="#registerPassword"></span>
+            </div>
+            <h3 class="loginText">Retype Password:</h3>
+            <div class="loginDiv mb-4">
+                <input id="registerCheckPassword" type="password" name="passwordCheck" required>
+                <span class="bi bi-eye loginIcon iconEye" data-target="#registerCheckPassword"></span>
+            </div>
+            <button id="registerBtn" type="submit" class="btn btn-custom mb-3">Register</button>
+        </form>
+        <form method="GET" action="/login">
+            <button type="submit" class="btn btn-outline-primary btn-outline-custom">Return to Sign In</button>
+        </form>
+    </div>
+</body>
+</html>

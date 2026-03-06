@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include("partials/head.ejs", { pageScripts: [] }) %>
+        <title>
+            <%= playlist.playlistName %>
+        </title>
+</head>
+
+<body>
+    <h1 id="title">VYNL</h1>
+    <%- include("partials/testnav.ejs") %>
+    <main class="page-content">
+        <h1 id="playlistcss"><%= playlist.playlistName %></h1>
+        <div class="profilePageInfo">
+            <section class="profilePagePart card-panel">
+                <ul class="plain-list">
+                    <% if (songs.length === 0) { %>
+                        <li>No songs in this playlist yet.</li>
+                    <% } %>
+                    <% for (let song of songs) { %>
+                        <li class="playlist-song-item">
+                            <img class="playlist-song-cover"
+                                src="<%= song.coverUrl || '/images/cover-placeholder.svg' %>"
+                                onerror="this.onerror=null;this.src='/images/cover-placeholder.svg';"
+                                alt="Album cover for <%= song.songName %>">
+                            <div class="playlist-song-meta">
+                                <strong><%= song.songName %></strong>
+                                <span>by <%= song.artistName %></span>
+                            </div>
+                        </li>
+                    <% } %>
+                </ul>
+
+                <div class="link-row">
+                    <a class="homeButtons inline-link" href="/playlists">Back to Playlists</a>
+                    <span>|</span>
+                    <a class="homeButtons inline-link" href="/search">Browse Songs</a>
+                </div>
+            </section>
+        </div>
+    </main>
+    <%- include("partials/footer") %>
+</body>
+
+</html>
